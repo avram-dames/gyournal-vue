@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const emit = defineEmits(['wheightChange', 'repsChange'])
+const emit = defineEmits(['weightChange', 'repsChange'])
 defineProps<{
     set: number
     lastWeight: number
@@ -8,7 +8,7 @@ defineProps<{
 
 const handleWeightChange = (set: number, e: Event) => {
     const target = e.target as HTMLInputElement
-    emit('wheightChange', { set, value: target.value })
+    emit('weightChange', { set, value: target.value })
 }
 
 const handleRepsChange = (set: number, e: Event) => {
@@ -38,5 +38,4 @@ const handleRepsChange = (set: number, e: Event) => {
     </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

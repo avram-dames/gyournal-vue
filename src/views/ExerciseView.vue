@@ -3,31 +3,37 @@ import SetForm from '../components/SetForm.vue'
 import { useJournalStore } from '@/stores/journal';
 
 const store = useJournalStore();
+
 const lastWeekSets = store
     .lastWeekWorkout
-    .days.find(day => day.day === 1)
-    .exercises.find(exercise => exercise.name === "Squats")
-    .sets;
+    ?.days.find(day => day.day === 1)
+    ?.exercises.find(exercise => exercise.name === "Squats")
+    ?.sets || [];
 
 const thisWeekSets = store
     .thisWeekWorkout
-    .days.find(day => day.day === 1)
-    .exercises.find(exercise => exercise.name === "Squats")
-    .sets;
+    ?.days.find(day => day.day === 1)
+    ?.exercises.find(exercise => exercise.name === "Squats")
+    ?.sets || [];
 
-const handleWeightChange = (e: Event) => {
-    const target = e.target as HTMLInputElement;
+const handleWeightChange = (payload: { set: number, value: number }) => {
     store.updateExercise({
         week: 2,
         day: 1,
         exercise: "Squats",
-        set: 1,
-        weight: target.value,
+        set: payload.set,
+        weight: Number(payload.value),
     });
 };
 
-const handleRepsChange = (set: number, value: number) => {
-    console.log(set, value);
+const handleRepsChange = (payload: { set: number, value: number }) => {
+    store.updateExercise({
+        week: 2,
+        day: 1,
+        exercise: "Squats",
+        set: payload.set,
+        reps: Number(payload.value),
+    });
 };
 </script>
 
@@ -36,8 +42,8 @@ const handleRepsChange = (set: number, value: number) => {
         <h2>Week 2 | Day 1</h2>
         <h3>Squats</h3>
         <div class="set-view">
-            <SetForm v-for="set in thisWeekSets" :set="set.set" :last-weight="lastWeekSets[0].weight"
-                :last-reps="lastWeekSets[0].reps" @reps-change="handleRepsChange" />
+            <SetForm v-for="set in thisWeekSets" v-bind:key="set.set" :set="set.set" :last-weight="lastWeekSets[0].weight"
+                :last-reps="lastWeekSets[0].reps" @reps-change="handleRepsChange" @weight-change="handleWeightChange" />
         </div>
     </div>
 </template>

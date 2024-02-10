@@ -57,13 +57,20 @@ export const useJournalStore = defineStore('journal', () => {
   const lastWeekWorkout = computed(() => journal.at(-2))
   const thisWeekWorkout = computed(() => journal.at(-1))
 
-  function updateExercise(data) {
-    console.log('updateExercise', data)
+  function updateExercise(data: {
+    week: number
+    day: number
+    exercise: string
+    set: number
+    reps?: number
+    weight?: number
+  }) {
     const setObj = journal
       .find((j) => j.week === data.week)
       ?.days.find((d) => d.day === data.day)
       ?.exercises.find((e) => e.name === data.exercise)
       ?.sets.find((s) => s.set === data.set)
+
     if (data.reps) setObj!.reps = data.reps
     if (data.weight) setObj!.weight = data.weight
   }

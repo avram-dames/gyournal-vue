@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 import ExerciseView from './ExerciseView.vue'
 import { createTestingPinia } from '@pinia/testing'
 import { useJournalStore } from '@/stores/journal'

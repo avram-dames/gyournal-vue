@@ -57,39 +57,9 @@ const handleRepsChange = (payload: { set: number, value: number }) => {
     }
 }
 
-.set-form {
-    display: flex;
-    flex-direction: row;
-    margin-top: 1em;
-}
-
 .set-view {
     display: flex;
     flex-direction: column;
     margin-top: 1em;
-}
-
-.set-form-inputs {
-    display: flex;
-    flex-direction: row;
-    column-gap: 1em;
-    margin-right: 1em;
-
-    &>input {
-        width: 100px;
-        font-variant-numeric: tabular-nums;
-    }
-}
-
-.set-form-row {
-    display: flex;
-    flex-direction: column;
-    column-gap: 1em;
-    margin-bottom: 1em;
-}
-
-.prev-value {
-    color: grey;
-    opacity: 80%;
 }
 </style>

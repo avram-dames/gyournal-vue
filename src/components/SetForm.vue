@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NumberPicker from './NumberPicker.vue';
+
 const emit = defineEmits(['weightChange', 'repsChange'])
 defineProps<{
     set: number
@@ -22,20 +24,54 @@ const handleRepsChange = (set: number, e: Event) => {
     <div class="set-form">
         <div class="set-form-row">
             <div class="set-form-inputs">
-                <input type="number" id="weight-input" aria-label="weight" @input="handleWeightChange(set, $event)" />
-                <label for="weight-input">Kg</label>
+                <NumberPicker :default-value="0" units="Kg"></NumberPicker>
             </div>
             <div class="prev-value">{{ lastWeight }}</div>
         </div>
-
+        <div class="divider"></div>
         <div class="set-form-row">
             <div class="set-form-inputs">
-                <input type="number" id="reps-input" aria-label="reps" @input="handleRepsChange(set, $event)" />
-                <label for="reps-input">Reps</label>
+                <NumberPicker :default-value="0" units="Reps"></NumberPicker>
             </div>
             <div class="prev-value">{{ lastReps }}</div>
         </div>
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.set-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 1em;
+}
+
+.divider {
+    border-left: 1px solid grey;
+}
+
+.set-form-inputs {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1em;
+    margin-right: 1em;
+
+    &>input {
+        width: 100px;
+        font-variant-numeric: tabular-nums;
+    }
+}
+
+.set-form-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    column-gap: 1em;
+    margin-bottom: 1em;
+}
+
+.prev-value {
+    color: grey;
+    opacity: 80%;
+}
+</style>

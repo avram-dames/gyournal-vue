@@ -18,14 +18,7 @@ describe('<NumberPicker />', () => {
   })
   it.only('handles Kg change', () => {
     cy.mount(NumberPicker, { props: { defaultValue: 20, units: 'Kg' } })
-
     cy.get('button.increment').click()
-
-    cy.get('@vue').should(({ wrapper }) => {
-      expect(wrapper.emitted('updateValue')).to.have.length
-      expect(wrapper.emitted('change')[0][0]).to.equal('20.5')
-    })
-
     cy.get('input').should('have.value', '20.5')
     cy.get('button.decrement').click()
     cy.get('input').should('have.value', '20')

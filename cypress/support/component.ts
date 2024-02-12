@@ -32,11 +32,4 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', (...args) => {
-  return mount(...args).then(({ wrapper }) => {
-    return cy.wrap(wrapper).as('vue')
-  })
-})
-
-// Example use:
-// cy.mount(MyComponent)
+Cypress.Commands.add('mount', mount)

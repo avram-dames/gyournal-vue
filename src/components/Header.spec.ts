@@ -5,7 +5,7 @@ import Header from './Header.vue'
 
 describe('Header', () => {
   it('renders properly', () => {
-    const wrapper = mount(Header, { props: { msg: 'Hello Vitest' } })
+    const wrapper = mount(Header, { props: { title: 'Hello Vitest', subtitle: '' } })
     expect(wrapper.text()).toContain('Hello Vitest')
   })
 })

@@ -1,7 +1,44 @@
 import { reactive, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://bdscgjhwmalvjlcikktt.supabase.co'
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 export const useJournalStore = defineStore('journal', () => {
+  const workouts = reactive([
+    {
+      name: 'Full body - Monday',
+      setsPerExercise: 3,
+      repsPerSet: 15,
+      exercises: [
+        {
+          name: 'Impins la piept din inclinat cu gantere',
+          target: ['chest', 'triceps']
+        },
+        {
+          name: 'Ridicari la biceps din sezut inclinat',
+          target: ['biceps']
+        }
+      ]
+    },
+    {
+      name: 'Full body - Thursday',
+      setsPerExercise: 3,
+      repsPerSet: 15,
+      exercises: [
+        {
+          name: 'Tractiuni la helcometru',
+          target: ['back', 'biceps']
+        },
+        {
+          name: 'Bulgarian Squats',
+          target: ['legs']
+        }
+      ]
+    }
+  ])
   const journal = reactive([
     {
       week: 1,
@@ -75,5 +112,5 @@ export const useJournalStore = defineStore('journal', () => {
     if (data.weight) setObj!.weight = data.weight
   }
 
-  return { journal, updateExercise, lastWeekWorkout, thisWeekWorkout }
+  return { workouts, journal, updateExercise, lastWeekWorkout, thisWeekWorkout }
 })

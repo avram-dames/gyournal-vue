@@ -10,9 +10,9 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
+      path: '/workout',
+      name: 'workout',
+      component: () => import('../views/WorkoutView.vue')
     },
     {
       path: '/exercise',
@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/sandbox',
       name: 'sandbox',
-      props: { set: 1, lastWeight: 42.5, lastReps: 15 },
+      props: { text: 'Hello' },
       component: () => import('../components/SetForm.vue')
     }
   ]

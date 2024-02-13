@@ -7,7 +7,7 @@ import Header from './components/Header.vue'
     <header>
         <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
         <div class="wrapper">
-            <Header title="Week 2 | Day 1" subtitle="Squats" />
+            <Header title="Gyournal" subtitle="Workout Summary" />
         </div>
     </header>
 
@@ -17,7 +17,7 @@ import Header from './components/Header.vue'
     <footer>
         <nav>
             <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">Workout</RouterLink>
+            <RouterLink to="/workout">Workout</RouterLink>
             <RouterLink to="/exercise">Exercise</RouterLink>
         </nav>
     </footer>
@@ -26,7 +26,7 @@ import Header from './components/Header.vue'
 <style scoped>
 header {
     line-height: 1.5;
-    max-height: 100vh;
+    margin-bottom: 20px;
 }
 
 .bottom-margin {

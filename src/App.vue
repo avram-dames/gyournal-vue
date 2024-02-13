@@ -13,11 +13,13 @@ import Header from './components/Header.vue'
 
     <RouterView />
 
-    <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">Workout</RouterLink>
-        <RouterLink to="/exercise">Exercise</RouterLink>
-    </nav>
+    <footer>
+        <nav>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/about">Workout</RouterLink>
+            <RouterLink to="/exercise">Exercise</RouterLink>
+        </nav>
+    </footer>
 </template>
 
 <style scoped>
@@ -31,11 +33,24 @@ header {
     margin: 0 auto 2rem;
 }
 
-nav {
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
     width: 100%;
+    background-color: white;
+    padding: 10px;
+}
+
+nav {
+    display: flex;
+    margin: auto;
     font-size: 1rem;
-    text-align: center;
-    margin-top: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: rgb(241, 248, 241);
 }
 
 nav a.router-link-exact-active {
@@ -46,10 +61,7 @@ nav a.router-link-exact-active:hover {
     background-color: transparent;
 }
 
-nav a {
-    display: inline-block;
-    padding: 0 1rem;
-}
+nav a {}
 
 
 nav a:first-of-type {
@@ -71,15 +83,6 @@ nav a:first-of-type {
         display: flex;
         place-items: flex-start;
         flex-wrap: wrap;
-    }
-
-    nav {
-        text-align: left;
-        margin-left: -1rem;
-        font-size: 1rem;
-
-        padding: 1rem 0;
-        margin-top: 1rem;
     }
 }
 </style>

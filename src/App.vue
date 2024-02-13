@@ -12,6 +12,7 @@ import Header from './components/Header.vue'
     </header>
 
     <RouterView />
+    <div class="bottom-margin"></div>
 
     <footer>
         <nav>
@@ -26,6 +27,10 @@ import Header from './components/Header.vue'
 header {
     line-height: 1.5;
     max-height: 100vh;
+}
+
+.bottom-margin {
+    height: 50px;
 }
 
 .logo {
@@ -47,7 +52,7 @@ nav {
     margin: auto;
     font-size: 1rem;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     border-radius: 12px;
     background-color: rgb(241, 248, 241);

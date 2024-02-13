@@ -7,7 +7,7 @@ import Header from './components/Header.vue'
     <header>
         <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
         <div class="wrapper">
-            <Header msg="Gyournal" />
+            <Header title="Week 2 | Day 1" subtitle="Squats" />
         </div>
     </header>
 

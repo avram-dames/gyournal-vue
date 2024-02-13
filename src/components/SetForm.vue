@@ -20,20 +20,22 @@ const handleRepsChange = (set: number, e: Event) => {
 </script>
 
 <template>
-    <h4>Set {{ set }}</h4>
+    <div class="set-title">
+        <div class="divider"></div>
+        <h3>Set {{ set }}</h3>
+    </div>
     <div class="set-form">
         <div class="set-form-row">
             <div class="set-form-inputs">
                 <NumberPicker :default-value="0" units="Kg"></NumberPicker>
             </div>
-            <div class="prev-value">{{ lastWeight }}</div>
+            <div class="prev-value">Last time you used {{ lastWeight }} Kg</div>
         </div>
-        <div class="divider"></div>
         <div class="set-form-row">
             <div class="set-form-inputs">
                 <NumberPicker :default-value="0" units="Reps"></NumberPicker>
             </div>
-            <div class="prev-value">{{ lastReps }}</div>
+            <div class="prev-value">Last time you did {{ lastReps }} reps</div>
         </div>
     </div>
 </template>
@@ -41,13 +43,15 @@ const handleRepsChange = (set: number, e: Event) => {
 <style scoped>
 .set-form {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 1em;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5px;
 }
 
 .divider {
-    border-left: 1px solid grey;
+    border-top: 0.5px solid grey;
+    height: 10px;
+    width: 100%;
 }
 
 .set-form-inputs {
@@ -55,6 +59,7 @@ const handleRepsChange = (set: number, e: Event) => {
     flex-direction: row;
     column-gap: 1em;
     margin-right: 1em;
+    width: 100%;
 
     &>input {
         width: 100px;
@@ -73,5 +78,7 @@ const handleRepsChange = (set: number, e: Event) => {
 .prev-value {
     color: grey;
     opacity: 80%;
+    padding-top: 5px;
+    font-size: 12px;
 }
 </style>

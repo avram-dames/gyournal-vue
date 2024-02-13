@@ -33,8 +33,10 @@ const getIncrement = (unitType: string): number => {
 const value = ref(props.defaultValue)
 
 const handleIncrement = () => {
-    value.value = value.value + getIncrement(props.units)
-    emit('updateValue', value.value)
+    if (value.value < 1000) {
+        value.value = value.value + getIncrement(props.units)
+        emit('updateValue', value.value)
+    }
 }
 
 const handleDecrement = () => {
@@ -57,7 +59,7 @@ const handleInput = (event: Event) => {
     <div v-else class="numberPicker">
         <button class="decrement" @click="handleDecrement">-</button>
         <div class="valueNumber">
-            <input class="value" :value="value" @input="handleInput" />
+            <input type="number" pattern="[0-9]*" class="value" :value="value" @input="handleInput" />
             <div class="units">{{ units }}</div>
         </div>
         <button class="increment" @click="handleIncrement">+</button>
@@ -68,14 +70,17 @@ const handleInput = (event: Event) => {
 .numberPicker {
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
     font-size: 1.5em;
+    background: rgb(241, 248, 241);
+    border-radius: 12px;
+    flex-grow: 1;
 }
 
 .valueNumber {
     display: flex;
     justify-content: space-between;
-    width: 100px;
+    padding-left: 10px;
 }
 
 .decrement,
@@ -84,13 +89,18 @@ const handleInput = (event: Event) => {
     font-weight: bold;
     color: var(--color-text);
     border: none;
+    background: rgb(225, 234, 225);
     cursor: pointer;
-    background-color: transparent;
-    margin: 0 10px 0 10px
+    flex-grow: 1;
+    height: 100%;
+}
+
+.increment {
+    border-radius: 0 12px 12px 0;
 }
 
 .decrement {
-    padding-bottom: 7px;
+    border-radius: 12px 0 0 12px;
 }
 
 .value {
@@ -99,8 +109,7 @@ const handleInput = (event: Event) => {
     border: none;
     cursor: pointer;
     background-color: transparent;
-    margin: 0 10px 0 10px;
-    width: 60px;
+    width: 5ch;
 }
 
 .units {
@@ -108,5 +117,6 @@ const handleInput = (event: Event) => {
     align-self: flex-end;
     padding-bottom: 5px;
     opacity: 0.7;
+    width: 5ch;
 }
 </style>

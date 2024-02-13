@@ -39,8 +39,6 @@ const handleRepsChange = (payload: { set: number, value: number }) => {
 
 <template>
     <div class="exercise-view">
-        <h2>Week 2 | Day 1</h2>
-        <h3>Squats</h3>
         <div class="set-view">
             <SetForm v-for="set in thisWeekSets" v-bind:key="set.set" :set="set.set" :last-weight="lastWeekSets[0].weight"
                 :last-reps="lastWeekSets[0].reps" @reps-change="handleRepsChange" @weight-change="handleWeightChange" />
@@ -60,6 +58,7 @@ const handleRepsChange = (payload: { set: number, value: number }) => {
 .set-view {
     display: flex;
     flex-direction: column;
-    margin-top: 1em;
+    margin-top: 1.5em;
+    gap: 1em;
 }
 </style>

@@ -11,6 +11,11 @@
     <p>Today is workout time. Press the button below in order to start your "Full-body One" workout!</p>
     <br>
     <button class="primary-button">Start workout</button>
+    <div class="saved-workouts">
+      <div class="workout-card">
+        <h3>Full Body 1</h3>
+      </div>
+    </div>
   </main>
 </template>
 

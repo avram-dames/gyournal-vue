@@ -27,4 +27,24 @@
   text-align: center;
   color: green;
 }
+
+.saved-workouts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.workout-card {
+  width: 100%;
+  background-color: greenyellow;
+  color: green;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 </style>

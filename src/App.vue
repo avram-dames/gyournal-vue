@@ -14,13 +14,13 @@ import Header from './components/Header.vue'
     <RouterView />
     <div class="bottom-margin"></div>
 
-    <footer>
+    <!-- <footer>
         <nav>
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/workout">Workout</RouterLink>
             <RouterLink to="/exercise">Exercise</RouterLink>
         </nav>
-    </footer>
+    </footer> -->
 </template>
 
 <style scoped>

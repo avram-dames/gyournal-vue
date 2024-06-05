@@ -23,7 +23,7 @@ a,
   font-size: 1rem;
   text-transform: uppercase;
   background-color: rgb(227, 247, 227);
-  color: var(--color-text);
+  color: var(--color-button);
 }
 
 @media (hover: hover) {

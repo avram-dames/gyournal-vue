@@ -1,32 +1,50 @@
 <script setup lang="ts">
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+import { type Workout } from '@/types'
 import { useJournalStore } from '@/stores/journal';
+
+const route = useRoute()
 const store = useJournalStore();
+
+let workout: Workout = store.workouts.find((workout) => workout.id === Number(route.params.id)) as Workout;
+
+watch(() => route.params.id, (newId, oldId) => {
+  workout = store.workouts.find((workout) => workout.id === Number(newId)) as Workout;
+})
 </script>
 
 <template>
-  <div class="about">
-    <div>
-      <h1>{{ store.workouts[0].name }}</h1>
+  <div class="details">
+      <h1>{{ workout.name }}</h1>
       <p>
-        Target {{ store.workouts[0].setsPerExercise }} sets per
-        exercise and {{ store.workouts[0].repsPerSet }} reps per set.
+        Target {{ workout.setsPerExercise }} sets per
+        exercise and {{ workout.repsPerSet }} reps per set.
       </p>
-      <h2>{{ store.workouts[0].exercises[0].name }}</h2>
-      <div class="tags">
-        <div v-for="tag in store.workouts[0].exercises[0].target" v-bind:key="tag" class="tag">{{ tag }}</div>
+      <div v-for="exercise in workout.exercises" :key="exercise.id" class="exercise-card">
+        <h2>{{ exercise.name }}</h2>
+        <div class="tags">
+          <div v-for="tag in exercise.target" :key="tag" class="tag">{{ tag }}</div>
+        </div>  
+        <button class="primary-button">Start Exercise</button>
       </div>
-    </div>
-    <button class="primary-button">Start Exercise</button>
   </div>
 </template>
 
 <style>
 @media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
+  .details {
     display: flex;
     align-items: center;
   }
+}
+
+.exercise-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .tags {
@@ -38,5 +56,6 @@ const store = useJournalStore();
   background-color: rgb(206, 249, 235);
   padding: 0px 10px;
   border-radius: 12px;
+  color: var(--color-button);
 }
 </style>

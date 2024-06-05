@@ -2,6 +2,7 @@
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 
+import router from '@/router';
 import { type Workout } from '@/types'
 import { useJournalStore } from '@/stores/journal';
 
@@ -13,6 +14,10 @@ let workout: Workout = store.workouts.find((workout) => workout.id === Number(ro
 watch(() => route.params.id, (newId, oldId) => {
   workout = store.workouts.find((workout) => workout.id === Number(newId)) as Workout;
 })
+
+const goToExercise = (id: number) => {
+  router.push(`/exercises/${id}`);
+};
 </script>
 
 <template>
@@ -27,7 +32,7 @@ watch(() => route.params.id, (newId, oldId) => {
         <div class="tags">
           <div v-for="tag in exercise.target" :key="tag" class="tag">{{ tag }}</div>
         </div>  
-        <button class="primary-button">Start Exercise</button>
+        <button @click="goToExercise(exercise.id)" class="primary-button">Start Exercise</button>
       </div>
   </div>
 </template>

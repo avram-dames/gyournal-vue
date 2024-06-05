@@ -27,7 +27,13 @@ describe('Athlete is able to use the app to track their workouts', () => {
     cy.get('.exercise-card').next().find('h2').should('contain', 'Extensia tricepsului cu funia')
   })
 
-  // can click on an exercise to see the sets
+  it('can click on an exercise to see the sets', () => {
+    cy.visit('/workouts/1')
+    cy.get('.exercise-card').first().find('.primary-button').click()
+    cy.url().should('include', '/exercises/1')
+    cy.get('h2').should('contain', 'Impins cu gantere din inclinat')
+  })
+
   // can start a workout
   // can update the sets of an exercise
   // can complete a workout and save it

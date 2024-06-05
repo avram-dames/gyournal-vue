@@ -2,7 +2,7 @@ import { reactive, computed } from 'vue'
 import { defineStore } from 'pinia'
 import { createClient } from '@supabase/supabase-js'
 
-import { type Workout } from '../types'
+import { type Workout, type Exercise } from '../types'
 
 const supabaseUrl = 'https://bdscgjhwmalvjlcikktt.supabase.co'
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
@@ -101,8 +101,47 @@ const workout2: Workout = {
   ]
 }
 
+const allExercises: Exercise[] = [
+  {
+    id: 1,
+    name: 'Impins cu gantere din inclinat',
+    target: ['chest', 'triceps']
+  },
+  {
+    id: 2,
+    name: 'Flexia antebratului pe brat cu gantere',
+    target: ['biceps']
+  },
+  {
+    id: 3,
+    name: 'Extensia tricepsului cu funia',
+    target: ['triceps']
+  },
+  {
+    id: 4,
+    name: 'Impins cu gantere deasupra capului',
+    target: ['shoulders']
+  },
+  {
+    id: 5,
+    name: 'Tractiuni la helcometru cu priza medie,neutra',
+    target: ['back', 'biceps']
+  },
+  {
+    id: 6,
+    name: 'Flexia gambei pe coapsa',
+    target: ['legs']
+  },
+  {
+    id: 7,
+    name: 'Extensia gambei pe coapsa',
+    target: ['legs']
+  }
+]
+
 export const useJournalStore = defineStore('journal', () => {
   const workouts = reactive([workout1, workout2])
+  const exercises = reactive(allExercises)
   const journal = reactive([
     {
       week: 1,
@@ -176,5 +215,5 @@ export const useJournalStore = defineStore('journal', () => {
     if (data.weight) setObj!.weight = data.weight
   }
 
-  return { workouts, journal, updateExercise, lastWeekWorkout, thisWeekWorkout }
+  return { workouts, journal, exercises, updateExercise, lastWeekWorkout, thisWeekWorkout }
 })

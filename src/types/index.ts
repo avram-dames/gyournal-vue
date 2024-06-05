@@ -5,3 +5,9 @@ export type Workout = {
   repsPerSet: number
   exercises: { id: number; name: string; target: string[] }[]
 }
+
+export type Exercise = {
+  id: number
+  name: string
+  target: string[]
+}

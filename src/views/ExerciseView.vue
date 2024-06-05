@@ -1,8 +1,21 @@
 <script setup lang="ts">
-import SetForm from '../components/SetForm.vue'
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+import { type Exercise } from '@/types'
 import { useJournalStore } from '@/stores/journal';
 
+import SetForm from '../components/SetForm.vue'
+
+const route = useRoute()
 const store = useJournalStore();
+
+let exercise: Exercise = store.exercises.find((exercise) => exercise.id === Number(route.params.id)) as Exercise;
+
+
+watch(() => route.params.id, (newId, oldId) => {
+  exercise = store.exercises.find((exercise) => exercise.id === Number(newId)) as Exercise;
+})
 
 const lastWeekSets = store
     .lastWeekWorkout
@@ -38,6 +51,7 @@ const handleRepsChange = (payload: { set: number, value: number }) => {
 </script>
 
 <template>
+    <h2>{{ exercise.name }}</h2>
     <div class="exercise-view">
         <div class="set-view">
             <SetForm v-for="set in thisWeekSets" v-bind:key="set.set" :set="set.set" :last-weight="lastWeekSets[0].weight"
